@@ -363,7 +363,7 @@ function createReviewerCard(r, currentUser) {
     </div>
 
     <div class="reviewer-actions">
-      <button class="open-btn" onclick="previewReviewer('${r.file_path}')">
+      <button class="open-btn" onclick="previewReviewer('${r.file_url}')">
         Open
       </button>
 
