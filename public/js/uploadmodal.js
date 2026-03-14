@@ -176,6 +176,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      showAlert("Renaming reviewer...", "info");
+
       try {
         const res = await fetch("/api/rename-reviewer", {
           method: "POST",
@@ -472,16 +474,26 @@ function renderReviewers() {
 function previewReviewer(path) {
   const preview = document.getElementById("reviewerPreview");
   const frame = document.getElementById("previewFrame");
+/*
+  const isMobile = /Android|iPhone|iPad|iPod|i.test(navigator.userAgent);
+
+  if (isMobile) {
+    window.open(path, "_blank");
+    return;
+  }
+  */
 
   if (!frame) return;
 
-  frame.src = path;
+  frame.src = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(path);
   preview.style.display = "block";
 }
 
 /* DELETE */
 
 async function deleteReviewer(id) {
+  showAlert("Deleting reviewer...", "info");
+  
   await fetch(`/api/reviewer/${id}`, {
     method: "DELETE",
   });
